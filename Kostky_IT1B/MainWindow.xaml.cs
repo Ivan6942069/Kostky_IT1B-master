@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,17 @@ namespace Kostky_IT1B
             zobrazkostky();
         }
 
+        private void Zobrazkostku(Rectangle rectangle, int cislo)
+        {
+            Dictionary<int, ImageBrush> images = new Dictionary<int, ImageBrush>();
+            images.Add(1, new ImageBrush(GetImage(Properties.Resources.dice_1 )));
+            images.Add(2, "dice_2");
+            images.Add(3, "dice_3");
+            images.Add(4, "dice_4");
+            images.Add(5, "dice_5");
+            images.Add(6, "dice_6");
+        }
+
         private void zobrazkostky()
         {
             kostka1.Content = kostky[0].Hodnota;
@@ -61,6 +73,15 @@ namespace Kostky_IT1B
             }
             zobrazkostky();
             spocitejbody();
+        }
+
+        private ImageSource GetImage(byte[] resource)
+        {
+            MemoryStream memoryStream = new MemoryStream(resource);
+            BitmapFrame bitmapFrame = BitmapFrame.Create(memoryStream);
+            Image image = new Image();
+            image.Source = bitmapFrame;
+            return image.Source;
         }
 
         private int spocitejbody()
