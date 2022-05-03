@@ -37,32 +37,32 @@ namespace Kostky_IT1B
             new Kostka(),
             new Kostka()
         };
-
+        Dictionary<int, ImageBrush> images = new Dictionary<int, ImageBrush>();
         public MainWindow()
         {
             InitializeComponent();
+            images.Add(1, new ImageBrush(GetImage(Properties.Resources.dice_1)));
+            images.Add(2, new ImageBrush(GetImage(Properties.Resources.dice_2)));
+            images.Add(3, new ImageBrush(GetImage(Properties.Resources.dice_3)));
+            images.Add(4, new ImageBrush(GetImage(Properties.Resources.dice_4)));
+            images.Add(5, new ImageBrush(GetImage(Properties.Resources.dice_5)));
+            images.Add(6, new ImageBrush(GetImage(Properties.Resources.dice_6)));
             zobrazkostky();
         }
 
         private void Zobrazkostku(Rectangle rectangle, int cislo)
         {
-            Dictionary<int, ImageBrush> images = new Dictionary<int, ImageBrush>();
-            images.Add(1, new ImageBrush(GetImage(Properties.Resources.dice_1 )));
-            images.Add(2, "dice_2");
-            images.Add(3, "dice_3");
-            images.Add(4, "dice_4");
-            images.Add(5, "dice_5");
-            images.Add(6, "dice_6");
+            rectangle.Fill = images[cislo];
         }
 
         private void zobrazkostky()
         {
-            kostka1.Content = kostky[0].Hodnota;
-            kostka2.Content = kostky[1].Hodnota;
-            kostka3.Content = kostky[2].Hodnota;
-            kostka4.Content = kostky[3].Hodnota;
-            kostka5.Content = kostky[4].Hodnota;
-            kostka6.Content = kostky[5].Hodnota;
+            Zobrazkostku(k1, kostky[0].Hodnota);
+            Zobrazkostku(k2, kostky[1].Hodnota);
+            Zobrazkostku(k3, kostky[2].Hodnota);
+            Zobrazkostku(k4, kostky[3].Hodnota);
+            Zobrazkostku(k5, kostky[4].Hodnota);
+            Zobrazkostku(k6, kostky[5].Hodnota);
         }
 
         private void btnhod_Click(object sender, RoutedEventArgs e)
